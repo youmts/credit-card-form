@@ -4,13 +4,13 @@
       {{ niceType }}
     </div>
     <div class="card-show_card-number">
-      {{ cardNumber }}
+      {{ showCardNumber }}
     </div>
     <div class="card-show_card-name">
-      {{ cardName }}
+      {{ showCardName }}
     </div>
     <div class="card-show_expiration">
-      {{ expirationMonth }} / {{ expirationYear }}
+      {{ showExpirationMonth }} / {{ showExpirationYear }}
     </div>
   </div>
 </template>
@@ -42,7 +42,25 @@ export default Vue.extend({
     },
     niceType: {
       type: String,
-      required: true
+      default: undefined
+    }
+  },
+  computed: {
+    showCardNumber: function() {
+      let i = 0;
+      const v = (this.cardNumber || "") + "################";
+      const mask = "#### #### #### ####";
+
+      return mask.replace(/#/g, _ => v[i++]);
+    },
+    showCardName: function() {
+      return this.cardName === "" ? "AD SOYAD" : this.cardName;
+    },
+    showExpirationMonth: function() {
+      return this.expirationMonth === "" ? "MM" : this.expirationMonth;
+    },
+    showExpirationYear: function() {
+      return this.expirationYear === "" ? "YY" : this.expirationYear;
     }
   }
 });

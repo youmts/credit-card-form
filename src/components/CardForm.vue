@@ -23,7 +23,11 @@
         :options="months"
         v-model="cardFormData.expirationMonth"
         @input="emitValue()"
-      ></b-form-select>
+      >
+        <template #first>
+          <BFormSelectOption value="">Month</BFormSelectOption>
+        </template>
+      </b-form-select>
     </b-form-group>
     <b-form-group label="Expiration Year" label-for="expiration-year">
       <b-form-select
@@ -32,7 +36,11 @@
         :options="years"
         v-model="cardFormData.expirationYear"
         @input="emitValue()"
-      ></b-form-select>
+      >
+        <template #first>
+          <BFormSelectOption value="">Year</BFormSelectOption>
+        </template>
+      </b-form-select>
     </b-form-group>
     <b-form-group label="CVV" label-for="cvv">
       <b-form-input
@@ -55,15 +63,15 @@ import { number as validateNumber } from "card-validator";
 export type CardFormData = {
   cardNumber: string;
   cardName: string;
-  expirationMonth: string;
-  expirationYear: string;
+  expirationMonth?: string;
+  expirationYear?: string;
   cvv: string;
-  niceType: string;
+  niceType?: string;
 };
 
 type State = {
   cardFormData: CardFormData;
-  months: string[];
+  months: (string | { value: undefined; text: string })[];
   years: string[];
 };
 
@@ -77,7 +85,7 @@ export default Vue.extend({
   data(): State {
     return {
       cardFormData: { ...this.value },
-      months: availableYears,
+      months: availableMonths,
       years: availableYears
     };
   },
@@ -86,8 +94,9 @@ export default Vue.extend({
       return;
     },
     emitValue() {
-      this.cardFormData.niceType =
-        validateNumber(this.cardFormData.cardNumber)?.card?.niceType || "";
+      this.cardFormData.niceType = validateNumber(
+        this.cardFormData.cardNumber
+      )?.card?.niceType;
 
       this.$emit("input", this.cardFormData);
     }
