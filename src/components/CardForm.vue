@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { addYears } from "date-fns";
+import { availableMonths, availableYears } from "../lib/date";
 // NOTE: 本当は import validator としたいが、下の不具合があるようなので
 // SEE: https://github.com/braintree/card-validator/issues/82
 import { number as validateNumber } from "card-validator";
@@ -75,18 +75,10 @@ export default Vue.extend({
     }
   },
   data(): State {
-    function padZeroMonth(number: number): string {
-      return ("00" + number).slice(-2);
-    }
-
     return {
       cardFormData: { ...this.value },
-      months: [...Array(12)].map((_, i) => padZeroMonth(i + 1)),
-      years: [...Array(8)].map((_, i) =>
-        addYears(new Date(), i)
-          .getFullYear()
-          .toString()
-      )
+      months: availableYears,
+      years: availableYears
     };
   },
   methods: {

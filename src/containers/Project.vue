@@ -11,6 +11,7 @@
 import CardForm, { CardFormData } from "../components/CardForm.vue";
 import CardShow from "../components/CardShow.vue";
 import Vue from "vue";
+import { availableMonths, availableYears } from "../lib/date";
 
 type State = {
   cardFormData: CardFormData;
@@ -26,8 +27,8 @@ export default Vue.extend({
       cardFormData: {
         cardNumber: "",
         cardName: "",
-        expirationMonth: "01",
-        expirationYear: "2020",
+        expirationMonth: availableMonths[0],
+        expirationYear: availableYears[0],
         cvv: "",
         niceType: ""
       }
