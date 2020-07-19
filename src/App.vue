@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-nav>
-      <b-nav-item>RESAS API で検索</b-nav-item>
+      <b-nav-item>クレジットカード入力フォーム</b-nav-item>
     </b-nav>
     <b-container>
       <Project />
