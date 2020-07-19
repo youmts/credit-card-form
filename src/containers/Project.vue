@@ -7,6 +7,7 @@
 
 <script lang="ts">
 import CardForm, { CardFormData } from "../components/CardForm.vue";
+import CardShow from "../components/CardShow.vue";
 import Vue from "vue";
 
 type State = {
@@ -15,7 +16,8 @@ type State = {
 
 export default Vue.extend({
   components: {
-    CardForm
+    CardForm,
+    CardShow
   },
   data: function(): State {
     return {
