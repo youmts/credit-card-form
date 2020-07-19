@@ -48,6 +48,7 @@ export default Vue.extend({
   computed: {
     showCardNumber: function() {
       let i = 0;
+      // NOTE: カード番号は最大12文字
       const v = (this.cardNumber || "") + "################";
       const mask = "#### #### #### ####";
 
