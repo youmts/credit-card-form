@@ -16,40 +16,50 @@
         @input="emitValue()"
       ></b-form-input>
     </b-form-group>
-    <b-form-group label="Expiration Month" label-for="expiration-month">
-      <b-form-select
-        id="expiration-month"
-        required
-        :options="months"
-        v-model="cardFormData.expirationMonth"
-        @input="emitValue()"
-      >
-        <template #first>
-          <BFormSelectOption value="">Month</BFormSelectOption>
-        </template>
-      </b-form-select>
-    </b-form-group>
-    <b-form-group label="Expiration Year" label-for="expiration-year">
-      <b-form-select
-        id="expiration-year"
-        required
-        :options="years"
-        v-model="cardFormData.expirationYear"
-        @input="emitValue()"
-      >
-        <template #first>
-          <BFormSelectOption value="">Year</BFormSelectOption>
-        </template>
-      </b-form-select>
-    </b-form-group>
-    <b-form-group label="CVV" label-for="cvv">
-      <b-form-input
-        id="cvv"
-        required
-        v-model="cardFormData.cvv"
-        @input="emitValue()"
-      ></b-form-input>
-    </b-form-group>
+    <b-form-row>
+      <b-col cols="8">
+        <label>Expiration Date</label>
+      </b-col>
+      <b-col cols="4">
+        <label>CVV</label>
+      </b-col>
+    </b-form-row>
+    <b-form-row>
+      <b-col cols="4">
+        <b-form-select
+          id="expiration-month"
+          required
+          :options="months"
+          v-model="cardFormData.expirationMonth"
+          @input="emitValue()"
+        >
+          <template #first>
+            <BFormSelectOption value="">Month</BFormSelectOption>
+          </template>
+        </b-form-select>
+      </b-col>
+      <b-col cols="4">
+        <b-form-select
+          id="expiration-year"
+          required
+          :options="years"
+          v-model="cardFormData.expirationYear"
+          @input="emitValue()"
+        >
+          <template #first>
+            <BFormSelectOption value="">Year</BFormSelectOption>
+          </template>
+        </b-form-select>
+      </b-col>
+      <b-col cols="4">
+        <b-form-input
+          id="cvv"
+          required
+          v-model="cardFormData.cvv"
+          @input="emitValue()"
+        ></b-form-input>
+      </b-col>
+    </b-form-row>
   </b-form>
 </template>
 
