@@ -52,7 +52,7 @@ export default Vue.extend({
       const v = this.cardNumber + "################";
       const mask = "#### #### #### ####";
 
-      return mask.replace(/#/g, _ => v[i++]);
+      return mask.replace(/#/g, () => v[i++]);
     },
     showCardName: function() {
       return this.cardName === "" ? "AD SOYAD" : this.cardName;
