@@ -2147,6 +2147,13 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001093, caniuse-lite@^1.0.30001097:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001102.tgz#3275e7a8d09548f955f665e532df88de0b63741a"
   integrity sha512-fOjqRmHjRXv1H1YD6QVLb96iKqnu17TjcLSaX64TwhGYed0P1E1CCWZ9OujbbK4Z/7zax7zAzvQidzdtjx8RcA==
 
+card-validator@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/card-validator/-/card-validator-7.0.1.tgz#9868d846e6ea59357fdde5c7de78f69066982d11"
+  integrity sha512-tpAAf9tPPb++C7R0t0R4Y74YHpRig1f8ZgwXxp01k48DmNexGcdCvhbfhhpkdAFpe0iTptJSejaelLhfzY9Uaw==
+  dependencies:
+    credit-card-type "^9.0.0"
+
 case-sensitive-paths-webpack-plugin@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.3.0.tgz#23ac613cc9a856e4f88ff8bb73bbb5e989825cf7"
@@ -2639,6 +2646,11 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+credit-card-type@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/credit-card-type/-/credit-card-type-9.0.0.tgz#484603f142831456a47f56f0bdcd602665060b5e"
+  integrity sha512-+q527CIkkF7U26FXS5nFTs0bSlR8MkDaK210WdPpMuJq32M7KDinQA397/D7xt9AYL0JeZn2ikZWvzY4q7riLg==
 
 cross-spawn@^5.0.1:
   version "5.1.0"

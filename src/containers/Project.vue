@@ -26,7 +26,8 @@ export default Vue.extend({
         cardName: "",
         expirationMonth: "01",
         expirationYear: "2020",
-        cvv: ""
+        cvv: "",
+        niceType: ""
       }
     };
   }

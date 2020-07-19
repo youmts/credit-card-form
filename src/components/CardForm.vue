@@ -48,6 +48,9 @@
 <script lang="ts">
 import Vue, { PropType } from "vue";
 import { addYears } from "date-fns";
+// NOTE: 本当は import validator としたいが、下の不具合があるようなので
+// SEE: https://github.com/braintree/card-validator/issues/82
+import { number as validateNumber } from "card-validator";
 
 export type CardFormData = {
   cardNumber: string;
@@ -55,6 +58,7 @@ export type CardFormData = {
   expirationMonth: string;
   expirationYear: string;
   cvv: string;
+  niceType: string;
 };
 
 type State = {
@@ -90,6 +94,9 @@ export default Vue.extend({
       return;
     },
     emitValue() {
+      this.cardFormData.niceType =
+        validateNumber(this.cardFormData.cardNumber)?.card?.niceType || "";
+
       this.$emit("input", this.cardFormData);
     }
   }

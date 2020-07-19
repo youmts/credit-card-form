@@ -1,6 +1,9 @@
 <template>
   <b-card>
     <b-card-text>
+      {{ niceType }}
+    </b-card-text>
+    <b-card-text>
       {{ cardNumber }}
     </b-card-text>
     <b-card-text>
@@ -40,6 +43,10 @@ export default Vue.extend({
       required: true
     },
     cvv: {
+      type: String,
+      required: true
+    },
+    niceType: {
       type: String,
       required: true
     }

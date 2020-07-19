@@ -11,6 +11,7 @@
     "add": "^2.0.6",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
+    "card-validator": "^7.0.1",
     "core-js": "^3.6.5",
     "date-fns": "^2.15.0",
     "vue": "^2.6.11"
