@@ -7,7 +7,10 @@
       {{ cardName }}
     </b-card-text>
     <b-card-text>
-      {{ expirationDate }}
+      {{ expirationMonth }}
+    </b-card-text>
+    <b-card-text>
+      {{ expirationYear }}
     </b-card-text>
     <b-card-text>
       {{ cvv }}
@@ -28,8 +31,12 @@ export default Vue.extend({
       type: String,
       required: true
     },
-    expirationDate: {
-      type: Date,
+    expirationMonth: {
+      type: String,
+      required: true
+    },
+    expirationYear: {
+      type: String,
       required: true
     },
     cvv: {

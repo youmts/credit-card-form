@@ -24,7 +24,8 @@ export default Vue.extend({
       cardFormData: {
         cardNumber: "",
         cardName: "",
-        expirationDate: new Date(),
+        expirationMonth: "01",
+        expirationYear: "2020",
         cvv: ""
       }
     };
