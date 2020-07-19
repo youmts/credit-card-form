@@ -3,7 +3,7 @@
     <b-nav>
       <b-nav-item>クレジットカード入力フォーム</b-nav-item>
     </b-nav>
-    <b-container>
+    <b-container class="root-app">
       <Project />
     </b-container>
   </div>
@@ -20,3 +20,9 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style scoped lang="scss">
+.root-app {
+  width: 600px;
+}
+</style>
