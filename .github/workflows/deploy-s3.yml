@@ -28,4 +28,4 @@ jobs:
 
     - name: Copy files to S3 with the AWS CLI
       run: |
-        aws s3 sync dist/ s3://${{AWS_S3_BUCKET_NAME}} --delete
+        aws s3 sync dist/ s3://${{ secret.AWS_S3_BUCKET_NAME }} --delete
