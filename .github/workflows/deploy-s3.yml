@@ -22,4 +22,4 @@ jobs:
 
     - name: Copy files to S3 with the AWS CLI
       run: |
-        s3 sync dist/ s3://credit-card-form --delete
+        aws s3 sync dist/ s3://credit-card-form --delete
