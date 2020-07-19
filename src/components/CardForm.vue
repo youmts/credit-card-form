@@ -83,7 +83,7 @@ export type CardFormData = {
 
 type State = {
   cardFormData: CardFormData;
-  months: (string | { value: undefined; text: string })[];
+  months: string[];
   years: string[];
 };
 
@@ -103,6 +103,7 @@ export default Vue.extend({
   },
   methods: {
     handleSubmit() {
+      // TODO: validate
       return;
     },
     emitValue() {
