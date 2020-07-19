@@ -4,6 +4,7 @@
       <b-form-input
         id="card-number"
         required
+        maxlength="16"
         v-model="cardFormData.cardNumber"
         @input="emitValue()"
       ></b-form-input>
@@ -55,6 +56,7 @@
         <b-form-input
           id="cvv"
           required
+          maxlength="4"
           v-model="cardFormData.cvv"
           @input="emitValue()"
         ></b-form-input>

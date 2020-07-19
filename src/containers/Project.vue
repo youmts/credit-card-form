@@ -39,7 +39,7 @@ export default Vue.extend({
 <style scoped lang="scss">
 .project_card-show {
   position: absolute;
-  top: 50px;
+  top: 4rem;
   z-index: 1;
   left: 50%;
   transform: translate(-50%, 0);
@@ -48,6 +48,6 @@ export default Vue.extend({
 }
 
 .project_card-form {
-  margin-top: 200px;
+  margin-top: 12rem;
 }
 </style>
