@@ -1,24 +1,18 @@
 <template>
-  <b-card>
-    <b-card-text>
+  <div class="card-show">
+    <div class="card-show_nice-type">
       {{ niceType }}
-    </b-card-text>
-    <b-card-text>
+    </div>
+    <div class="card-show_card-number">
       {{ cardNumber }}
-    </b-card-text>
-    <b-card-text>
+    </div>
+    <div class="card-show_card-name">
       {{ cardName }}
-    </b-card-text>
-    <b-card-text>
-      {{ expirationMonth }}
-    </b-card-text>
-    <b-card-text>
-      {{ expirationYear }}
-    </b-card-text>
-    <b-card-text>
-      {{ cvv }}
-    </b-card-text>
-  </b-card>
+    </div>
+    <div class="card-show_expiration">
+      {{ expirationMonth }} / {{ expirationYear }}
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -53,3 +47,45 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style scoped lang="scss">
+.card-show {
+  font-family: monospace;
+  background-color: gray;
+  color: white;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 1rem;
+  width: 22rem;
+  height: 12rem;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-show_nice-type {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+}
+
+.card-show_card-number {
+  position: absolute;
+  top: 5rem;
+  left: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.card-show_card-name {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.card-show_expiration {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1rem;
+  font-size: 1.2rem;
+}
+</style>

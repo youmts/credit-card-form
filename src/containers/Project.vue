@@ -1,7 +1,9 @@
 <template>
   <div>
-    <CardShow v-bind="cardFormData" />
-    <CardForm v-model="cardFormData" />
+    <CardShow v-bind="cardFormData" class="project_card-show" />
+    <b-card class="mt-5">
+      <CardForm v-model="cardFormData" class="project_card-form" />
+    </b-card>
   </div>
 </template>
 
@@ -34,4 +36,18 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.project_card-show {
+  position: absolute;
+  top: 50px;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+}
+
+.project_card-form {
+  margin-top: 200px;
+}
+</style>
