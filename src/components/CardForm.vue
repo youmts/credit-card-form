@@ -1,21 +1,31 @@
 <template>
-  <b-form @submit.prevent="handleSubmit">
+  <b-form @submit.stop.prevent="handleSubmit">
     <b-form-group label="Card Number" label-for="card-number">
       <b-form-input
         id="card-number"
-        required
         maxlength="16"
-        v-model="cardFormData.cardNumber"
+        v-model="$v.form.cardNumber.$model"
+        :state="validateState('cardNumber')"
         @input="emitValue()"
+        :formatter="formatNumber"
       ></b-form-input>
+      <b-form-invalid-feedback
+        >This is a required field and must be a 16
+        characters.</b-form-invalid-feedback
+      >
     </b-form-group>
     <b-form-group label="Card Name" label-for="card-name">
       <b-form-input
         id="card-name"
-        required
-        v-model="cardFormData.cardName"
+        maxlength="20"
+        v-model="$v.form.cardName.$model"
+        :state="validateState('cardName')"
         @input="emitValue()"
       ></b-form-input>
+      <b-form-invalid-feedback
+        >This is a required field and at least 3
+        characters.</b-form-invalid-feedback
+      >
     </b-form-group>
     <b-form-row>
       <b-col cols="8">
@@ -29,38 +39,49 @@
       <b-col cols="4">
         <b-form-select
           id="expiration-month"
-          required
+          v-model="$v.form.expirationMonth.$model"
+          :state="validateState('expirationMonth')"
           :options="months"
-          v-model="cardFormData.expirationMonth"
           @input="emitValue()"
         >
           <template #first>
             <BFormSelectOption value="">Month</BFormSelectOption>
           </template>
         </b-form-select>
+        <b-form-invalid-feedback
+          >This is a required field.</b-form-invalid-feedback
+        >
       </b-col>
       <b-col cols="4">
         <b-form-select
           id="expiration-year"
-          required
+          v-model="$v.form.expirationYear.$model"
+          :state="validateState('expirationYear')"
           :options="years"
-          v-model="cardFormData.expirationYear"
           @input="emitValue()"
         >
           <template #first>
             <BFormSelectOption value="">Year</BFormSelectOption>
           </template>
         </b-form-select>
+        <b-form-invalid-feedback
+          >This is a required field.</b-form-invalid-feedback
+        >
       </b-col>
       <b-col cols="4">
         <b-form-input
           id="cvv"
-          required
+          v-model="$v.form.cvv.$model"
+          :state="validateState('cvv')"
           maxlength="4"
-          v-model="cardFormData.cvv"
           @input="emitValue()"
+          :formatter="formatNumber"
         ></b-form-input>
+        <b-form-invalid-feedback
+          >This must be 3 or 4 characters.</b-form-invalid-feedback
+        >
       </b-col>
+      <b-button variant="primary" type="submit" class="mt-4">Submit</b-button>
     </b-form-row>
   </b-form>
 </template>
@@ -71,6 +92,8 @@ import { availableMonths, availableYears } from "../lib/date";
 // NOTE: 本当は import validator としたいが、下の不具合があるようなので
 // SEE: https://github.com/braintree/card-validator/issues/82
 import { number as validateNumber } from "card-validator";
+import { validationMixin } from "vuelidate";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
 export type CardFormData = {
   cardNumber: string;
@@ -82,12 +105,37 @@ export type CardFormData = {
 };
 
 type State = {
-  cardFormData: CardFormData;
+  form: CardFormData;
   months: string[];
   years: string[];
 };
 
 export default Vue.extend({
+  mixins: [validationMixin],
+  validations: {
+    form: {
+      cardNumber: {
+        required,
+        minLength: minLength(16),
+        maxLength: maxLength(16)
+      },
+      cardName: {
+        required,
+        minLength: minLength(3)
+      },
+      expirationMonth: {
+        required
+      },
+      expirationYear: {
+        required
+      },
+      cvv: {
+        required,
+        minLength: minLength(3),
+        maxLength: maxLength(4)
+      }
+    }
+  },
   props: {
     value: {
       type: Object as PropType<CardFormData>,
@@ -96,22 +144,38 @@ export default Vue.extend({
   },
   data(): State {
     return {
-      cardFormData: { ...this.value },
+      form: { ...this.value },
       months: availableMonths,
       years: availableYears
     };
   },
   methods: {
+    validateState(name: string) {
+      const field = this.$v.form[name];
+
+      if (!field) {
+        throw "no name in $v.form";
+      }
+
+      const { $dirty, $error } = field;
+      return $dirty ? !$error : null;
+    },
     handleSubmit() {
-      // TODO: validate
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        return;
+      }
+
+      alert("ok");
       return;
     },
     emitValue() {
-      this.cardFormData.niceType = validateNumber(
-        this.cardFormData.cardNumber
-      )?.card?.niceType;
+      this.form.niceType = validateNumber(this.form.cardNumber)?.card?.niceType;
 
-      this.$emit("input", this.cardFormData);
+      this.$emit("input", this.form);
+    },
+    formatNumber(value: string) {
+      return value.replace(/\D/g, "");
     }
   }
 });
