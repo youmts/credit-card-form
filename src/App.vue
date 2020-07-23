@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <Kanban msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    <b-nav> </b-nav>
+    <b-container class="root-app">
+      <FormContainer />
+    </b-container>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Kanban from "./components/Kanban.vue";
+import FormContainer from "./containers/FormContainer.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
-    Kanban
+    FormContainer
   }
 });
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped lang="scss">
+.root-app {
+  width: 600px;
 }
 </style>
