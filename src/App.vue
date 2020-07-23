@@ -1,8 +1,6 @@
 <template>
   <div>
-    <b-nav>
-      <b-nav-item>クレジットカード入力フォームのデモ</b-nav-item>
-    </b-nav>
+    <b-nav> </b-nav>
     <b-container class="root-app">
       <FormContainer />
     </b-container>
